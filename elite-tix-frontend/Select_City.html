@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Services</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative; /* Added position relative */
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: orangered;
+    }
+
+    .services {
+        display: flex;
+        justify-content: space-evenly;
+
+        flex-wrap: wrap;
+    }
+
+    .service {
+        width: calc(20% - 20px); 
+        margin-right: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px whitesmoke;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        margin-bottom: 20px;
+        position: relative; 
+    }
+
+    .service:last-child {
+        margin-right: 0;
+    }
+
+    .service:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgb(255, 72, 0);
+    }
+
+    .service img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .service-title {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+
+    /* Styling for the circle */
+    .user-circle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #4CAF50;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: box-shadow 0.3s, transform 0.3s;
+        z-index: 2; /* Added z-index to make sure it's on top */
+    }
+
+    .user-circle:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        transform: scale(1.1);
+    }
+
+    .user-circle p {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 70px; /* Adjusted the top position */
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown-content hr {
+        margin: 5px 0;
+        border: none;
+        border-top: 1px solid #ccc;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CHOOSE YOUR LOCATION</h1>
+    <section id="section1">
+        <div class="services">
+            
+            <div class="service">
+                <a href="book_ticket_hyderabad.html">
+                    <div class="service-title">HYDERABAD</div>
+                    <img src="Hyderabad.png" alt="HYDERABAD">
+                </a>
+            </div>
+            <div class="service">
+                <a href="book_ticket_chennai.html">
+                    <div class="service-title">CHENNAI</div>
+                    <img src="Chennai.png" alt="CHENNAI">
+                </a>
+            </div>
+            <div class="service">
+                <a href="book_ticket_bengaluru.html">
+                    <div class="service-title">BENGALURU</div>
+                    <img src="Bengaluru.jpg" alt="BENGALURU">
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="user-circle" onclick="toggleDropdown()">
+    <span>A</span>
+    <div class="dropdown-content" id="dropdownContent">
+        <a href="contact.html">Contact us</a>
+        <hr>
+        <a href="login_page.html">Log out</a>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown() {
+    var dropdown = document.getElementById("dropdownContent");
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        dropdown.style.display = "block";
+    }
+    }
+
+</script>
+</body>
+</html>

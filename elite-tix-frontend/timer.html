@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://www.shutterstock.com/image-photo/mobile-banking-network-online-payment-260nw-1431394361.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #countdown {
+    font-size: 36px;
+    margin-top: 50px;
+    color: #333;
+  }
+
+  #payment-process {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #333;
+  }
+
+  #payment-completed {
+    font-size: 24px;
+    margin-top: 20px;
+    color: green;
+    display: none;
+  }
+  
+  #gif-container {
+    display: none;
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  #gif-container img {
+    width: 300px;
+    margin: 10px auto;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<div id="countdown">3</div>
+
+<div id="payment-process">Payment in process</div>
+
+<div id="gif-container">
+  <img id="gif1" src="verified_tickmark.gif" alt="Successful Payment">
+</div>
+
+<div id="payment-completed">PAYMENT COMPLETED</div>
+
+<script>
+  window.onload = function() {
+    var countdownDisplay = document.getElementById('countdown');
+    var paymentProcessDisplay = document.getElementById('payment-process');
+    var paymentCompletedDisplay = document.getElementById('payment-completed');
+    var gifContainer = document.getElementById('gif-container');
+    var body = document.body;
+
+    function countdown() {
+      var count = 3;
+      var countdownInterval = setInterval(function() {
+        count--;
+        countdownDisplay.textContent = count;
+
+        if (count === 0) {
+          clearInterval(countdownInterval);
+          countdownDisplay.style.display = 'none';
+          paymentProcessDisplay.style.display = 'none';
+          gifContainer.style.display = 'block';
+          paymentCompletedDisplay.style.display = 'block';
+          body.style.backgroundImage = "url('https://www.shutterstock.com/image-photo/mobile-banking-network-online-payment-260nw-1431394361.jpg')";
+          
+          setTimeout(function() {
+            window.location.href = "intro_page.html"; 
+          }, 3000);
+        }
+      }, 1000);
+    }
+    
+    countdown();
+  };
+</script>
+
+</body>
+</html>

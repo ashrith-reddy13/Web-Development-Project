@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Services</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+    }
+
+    #section1, #section2 {
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        border-radius: 10px;
+        box-shadow: 0 0 10px whitesmoke;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: rgb(255, 68, 0);
+    }
+    p {
+        color: #fff;
+    }
+
+    .services {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .service {
+        width: 45%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px whitesmoke;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .service:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .service img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .service-title {
+        background-color: #333;
+        color: rgb(255, 0, 0);
+        padding: 10px 0;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    /* Styling for the circle */
+    .user-circle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #4CAF50;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: box-shadow 0.3s, transform 0.3s;
+        z-index: 2;
+    }
+
+    .user-circle:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        transform: scale(1.1);
+    }
+
+    .user-circle p {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+        top: 70px;
+        right: 20px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown-content hr {
+        margin: 5px 0;
+        border: none;
+        border-top: 1px solid #ccc;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <section id="section1">
+        <h2>ABOUT US</h2>
+        <p>Welcome to EliteTix, your one-stop destination for unforgettable entertainment experiences. We are a passionate team dedicated to revolutionizing the way you discover and book tickets for movies, concerts, theater, and live events.</p>
+    </section>
+
+    <section id="section2">
+        <h2>OUR SERVICES</h2>
+        <div class="services">
+            <div class="service" onclick="window.location.href='Select_City.html'">
+                <div class="service-title">BOOK A MOVIE</div>
+                <img src="Movies.jpg" alt="Book a Movie">
+            </div>
+            <div class="service" onclick="window.location.href='event_select.html'">
+                <div class="service-title">BOOK AN EVENT</div>
+                <img src="Events.jpg" alt="Book an Event">
+            </div>
+        </div>
+    </section>
+</div>
+<div class="user-circle" onclick="toggleDropdown()">
+    <span>A</span>
+    <div class="dropdown-content" id="dropdownContent">
+        <a href="contact.html">Contact us</a>
+        <hr>
+        <a href="login_page.html">Log out</a>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownContent");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>

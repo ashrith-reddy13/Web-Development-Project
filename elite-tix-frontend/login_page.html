@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventify - Sign Up/Login</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    #container {
+        width: 80%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    #left-side, #right-side {
+        padding: 20px;
+    }
+    #left-side {
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        text-align: center;
+    }
+    #right-side {
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    h2 {
+        font-size: 80px;
+        color: rgb(255, 68, 0);
+    }
+    h3 {
+        font-size: 80px;
+        color: rgb(255, 68, 0);
+    }
+    p {
+        padding-left: 0px;
+        color: rgb(255, 68, 0);
+    }
+    form {
+        max-width: 400px; 
+        margin: 0 auto;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 15px; 
+        margin: 10px 0; 
+        font-size: 18px; 
+        border: 1px solid #ccc;
+        border-radius: 8px; 
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .scrolling-images {
+        width: 500px; 
+        height: 500px; 
+        overflow: hidden;
+        position: relative;
+    }
+    .scrolling-images img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        padding-left: 130px;
+    }
+    .scrolling-images img.active {
+        opacity: 1;
+    }
+    #success-message
+    {
+        padding-left: 199px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div id="left-side">
+        <h2>Welcome to EliteTix!</h2>
+        <p style="font-size: 30px;">Your one-stop solution to book your tickets</p>
+        <div class="scrolling-images">
+            <img class="active" src="OG.jpg" style="width:380px; height:500px;" alt="OG">
+            <img src="Kalki.jpg" style="width:380px; height:500px;" alt="Kalki">
+            <img src="Pushpa2.jpg" style="width:380px; height:500px;" alt="Pushpa2">
+            <img src="Devara.jpg" style="width:380px; height:500px;" alt="Devara">
+            <img src="Goat.jpg" style="width:380px; height:500px;" alt="Goat">
+            <img src="RC15.jpg" style="width:380px; height:500px;" alt="RC15">
+            <img src="UBS.jpg" style="width:380px; height:500px;" alt="UBS">
+        </div>
+    </div>
+    <div id="right-side">
+        <form id="signup-form">
+            <h2 style="white-space: nowrap;">Sign up/login</h2>
+            <input type="text" id="firstName" placeholder="First Name" required><br>
+            <input type="text" id="lastName" placeholder="Last Name" required><br>
+            <input type="email" id="email" placeholder="Email" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <input type="submit" value="Sign Up/Login">
+        </form>
+        <p id="success-message" style="display: none; color: rgb(244, 255, 244);">Signed in successfully!</p>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById("signup-form").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        document.getElementById("success-message").style.display = "block";
+
+        setTimeout(function() {
+            document.getElementById("signup-form").reset();
+            document.getElementById("success-message").style.display = "none";
+            window.location.href = "intro_page.html"; 
+        }, 2000);
+    });
+
+    var images = document.querySelectorAll('.scrolling-images img');
+    var index = 0;
+
+    setInterval(function() {
+        images[index].classList.remove('active');
+        index = (index + 1) % images.length;
+        images[index].classList.add('active');
+    }, 1000); 
+</script>
+</body>
+</html>

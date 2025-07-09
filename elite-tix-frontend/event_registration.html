@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        /* Styles for the form */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/288/391/desktop-wallpaper-1440x900-concert-concerts.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input,
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #28a745;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #successMessage {
+            display: none;
+            color: green;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #cityInput {
+            width: calc(100% - 22px); 
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .user-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    z-index: 9999;
+}
+
+.user-circle:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.user-circle span {
+    color: black; 
+    font-size: 24px;
+    margin: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 20px;
+    top: 70px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown-content hr {
+    margin: 5px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 100%;
+}
+    </style>
+</head>
+
+<body>
+    <h1>Event Registration</h1>
+
+    <!-- Form for user input -->
+    <form id="registrationForm">
+        <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
+        <input type="number" id="age" name="age" placeholder="Age" required />
+        <input type="email" id="email" name="email" placeholder="Email ID" required />
+        <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required pattern="^\d{10}$" />
+        <input type="number" id="tickets" name="tickets" placeholder="Number of Tickets" required min="1" />
+        <select id="ticketType" name="ticketType" required>
+            <option value="" disabled selected>Type of Ticket</option>
+            <option value="normal">Normal</option>
+            <option value="premium">Premium</option>
+            <option value="ultra-premium">Ultra Premium</option>
+        </select>
+        <label for="cityInput">City:</label>
+        <input type="text" id="cityInput" name="city" list="cities" placeholder="Enter your city" required />
+        <datalist id="cities">
+            <option value="Mumbai">
+            <option value="Delhi">
+            <option value="Bangalore">
+            <option value="Hyderabad">
+            <option value="Chennai">
+        </datalist>
+        <button type="submit">Submit</button>
+    </form>
+    <div class="user-circle" onclick="toggleDropdown()">
+        <span>A</span>
+        <div class="dropdown-content" id="dropdownContent">
+            <a href="contact.html">Contact us</a>
+            <hr>
+            <a href="login_page.html">Log out</a>
+        </div>
+    </div>
+
+    <!-- Success message -->
+    <div id="successMessage">Registered successfully for the event!!!</div>
+
+    <!-- JavaScript to handle form submission -->
+    <script>
+        // Get references to the form and the success message
+        const form = document.getElementById('registrationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        // Add an event listener for form submission
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Show the success message
+            successMessage.style.display = 'block';
+
+            // Redirect to another webpage after 2 seconds
+            setTimeout(function () {
+                window.location.href = 'event_payment.html'; // Change the URL to your desired webpage
+            }, 2000); // Redirect after 2 seconds
+        });
+        function toggleDropdown() {
+         var dropdown = document.getElementById("dropdownContent");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinema Theatres</title>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+header {
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: orangered;
+    padding: 20px;
+    text-align: center;
+}
+
+.theatre-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.theatre {
+    background-color: grey;
+    border: 2px solid grey;
+    box-shadow: 0 0 20px rgb(225, 227, 232);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+}
+
+.theatre h2 {
+    margin-bottom: 20px;
+}
+
+.time-slot {
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.time {
+    font-weight: bold;
+}
+
+.time-slot + .time-slot {
+    margin-top: 10px;
+}
+
+.occupancy {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: none;
+    padding: 10px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+}
+
+.occupancy.active {
+    display: block;
+}
+
+.percentage {
+    border-radius: 5px;
+    height: 20px;
+}
+
+.green {
+    background-color: #5cb85c;
+}
+
+.orange {
+    background-color: #f0ad4e;
+}
+
+.red {
+    background-color: #ff0800;
+}
+.user-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10px; /* Adjusted spacing */
+    transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+
+    .user-circle:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        transform: scale(1.1);
+    }
+
+    .user-circle p {
+        color: #fff;
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        z-index: 1;
+        right: 20px;
+        top: 70px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown-content hr {
+        margin: 5px 0;
+        border: none;
+        border-top: 1px solid #ccc;
+        width: 100%;
+    }
+
+    .city-box {
+    background-color: orangered;
+    color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 0 10px whitesmoke;
+    }
+
+    .city-box:hover {
+        box-shadow: 0 0 15px whitesmoke;
+    }
+    .city-user-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1> Here are the Movie Theatres in your city!!</h1>
+</header>
+
+<div class="theatre-container">
+    <div class="theatre">
+        <h2>Theatre 1</h2>
+        <div class="time-slot" id="time-slot-1" onmouseover="showOccupancy('time-slot-1')" onmouseout="hideOccupancy('time-slot-1')">
+            <a href="select_seat_bengaluru.html"><div class="time">10:00 AM</div></a>
+            <div class="occupancy" id="occupancy-1">
+                <div class="percentage"></div>
+            </div>
+        </div>
+        <div class="time-slot" id="time-slot-2" onmouseover="showOccupancy('time-slot-2')" onmouseout="hideOccupancy('time-slot-2')">
+            <a href="select_seat_bengaluru.html"><div class="time">1:00 PM</div></a>
+            <div class="occupancy" id="occupancy-2">
+                <div class="percentage"></div>
+            </div>
+        </div>
+        <div class="time-slot" id="time-slot-3" onmouseover="showOccupancy('time-slot-3')" onmouseout="hideOccupancy('time-slot-3')">
+            <a href="select_seat_bengaluru.html"><div class="time">4:00 PM</div></a>
+            <div class="occupancy" id="occupancy-3">
+                <div class="percentage"></div>
+            </div>
+        </div>
+    </div>
+    <div class="theatre">
+        <h2>Theatre 2</h2>
+        <div class="time-slot" id="time-slot-4" onmouseover="showOccupancy('time-slot-4')" onmouseout="hideOccupancy('time-slot-4')">
+            <a href="select_seat_bengaluru.html"><div class="time">11:00 AM</div></a>
+            <div class="occupancy" id="occupancy-4">
+                <div class="percentage"></div>
+            </div>
+        </div>
+        <div class="time-slot" id="time-slot-5" onmouseover="showOccupancy('time-slot-5')" onmouseout="hideOccupancy('time-slot-5')">
+            <a href="select_seat_bengaluru.html"><div class="time">2:00 PM</div></a>
+            <div class="occupancy" id="occupancy-5">
+                <div class="percentage"></div>
+            </div>
+        </div>
+        <div class="time-slot" id="time-slot-6" onmouseover="showOccupancy('time-slot-6')" onmouseout="hideOccupancy('time-slot-6')">
+            <a href="select_seat_bengaluru.html"><div class="time">5:00 PM</div></a>
+            <div class="occupancy" id="occupancy-6">
+                <div class="percentage"></div>
+            </div>
+        </div>
+    </div>
+    <div class="theatre">
+        <h2>Theatre 3</h2>
+        <div class="time-slot" id="time-slot-7" onmouseover="showOccupancy('time-slot-7')" onmouseout="hideOccupancy('time-slot-7')">
+            <a href="select_seat_bengaluru.html"><div class="time">12:00 PM</div></a>
+            <div class="occupancy" id="occupancy-7">
+                <div class="percentage"></div>
+            </div>
+        </div>
+        <div class="time-slot" id="time-slot-8" onmouseover="showOccupancy('time-slot-8')" onmouseout="hideOccupancy('time-slot-8')">
+            <a href="select_seat_bengaluru.html"><div class="time">3:00 PM</div></a>
+            <div class="occupancy" id="occupancy-8">
+                <div class="percentage"></div>
+            </div>
+        </div>
+        <div class="time-slot" id="time-slot-9" onmouseover="showOccupancy('time-slot-9')" onmouseout="hideOccupancy('time-slot-9')">
+           <a href="select_seat_bengaluru.html"> <div class="time">6:00 PM</div></a>
+            <div class="occupancy" id="occupancy-9">
+                <div class="percentage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="city-user-container"> 
+    <div class="city-box" id="cityName">
+        <span>BENGALURU</span>
+    </div>
+    <div class="user-circle" onclick="toggleDropdown()">
+        <span>A</span>
+        <div class="dropdown-content" id="dropdownContent">
+            <a href="contact.html">Contact us</a>
+            <hr>
+            <a href="login_page.html">Log out</a>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+const occupancyData = {
+    "time-slot-1": 80,
+    "time-slot-2": 50,
+    "time-slot-3": 30,
+    "time-slot-4": 60,
+    "time-slot-5": 40,
+    "time-slot-6": 20,
+    "time-slot-7": 70,
+    "time-slot-8": 45,
+    "time-slot-9": 35
+};
+
+function showOccupancy(id) {
+    const occupancyElement = document.getElementById(id);
+    occupancyElement.querySelector('.occupancy').classList.add('active');
+    const percentageElement = occupancyElement.querySelector('.percentage');
+    const occupancyPercentage = occupancyData[id];
+    percentageElement.textContent = occupancyPercentage + "% filled";
+    if (occupancyPercentage >= 75) {
+        percentageElement.classList.add('green');
+    } else if (occupancyPercentage >= 40 && occupancyPercentage < 75) {
+        percentageElement.classList.add('orange');
+    } else {
+        percentageElement.classList.add('red');
+    }
+}
+
+function hideOccupancy(id) {
+    document.getElementById(id).querySelector('.occupancy').classList.remove('active');
+}
+
+function toggleDropdown() {
+        var dropdown = document.getElementById("dropdownContent");
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+
+</script>
+</body>
+</html>

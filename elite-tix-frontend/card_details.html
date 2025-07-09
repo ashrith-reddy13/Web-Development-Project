@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/307/12/896/simple-background-black-background-minimalism-theater-photography-hd-wallpaper-preview.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 40px orangered;
+    margin-bottom: 70px;
+  }
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  .credit-card-images {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .credit-card-images img {
+    width: calc(20% - 10px); /* Adjust the width as per your requirement */
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .credit-card-images img:hover {
+    transform: scale(1.1);
+  }
+  .input-container {
+    margin-bottom: 20px;
+  }
+  .input-container label {
+    font-size: 16px;
+    color: #555;
+  }
+  .input-container input[type="text"] {
+    width: calc(50% - 5px);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  .input-container input[type="text"].cvv {
+    width: calc(25% - 5px);
+  }
+  .input-container input[type="text"].cvv.error {
+    border-color: red;
+  }
+  .amount-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .amount-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  .pay-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 280px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 0 20px rgb(0, 255, 0);
+    margin-top: 20px;
+    display: block;
+    margin: 0 auto; /* Center the button */
+  }
+  .pay-btn:hover {
+    background-color: #45a049;
+  }
+  .user-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    z-index: 9999;
+}
+
+.user-circle:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.user-circle span {
+    color: black; 
+    font-size: 24px;
+    margin: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 20px;
+    top: 70px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown-content hr {
+    margin: 5px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+    width: 100%;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <h2><u>CARD DETAILS</u></h2>
+  <div class="credit-card-images">
+    <img src="https://i.pinimg.com/736x/35/6b/95/356b9546f3f77798b6a76fbc1a1cebf6.jpg" alt="Visa" onclick="enhanceImage(this)">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Rupay-Logo.png" alt="RuPay" onclick="enhanceImage(this)">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png" alt="Mastercard" onclick="enhanceImage(this)">
+    <img src="https://www.discoversignage.com/uploads/09-12-21_04:20_DGN_AcceptanceMark_FC_Hrz_RGB.png" alt="Discover Club" onclick="enhanceImage(this)">
+    <img src="https://w7.pngwing.com/pngs/745/624/png-transparent-centurion-card-american-express-credit-card-discover-card-mastercard-credit-card-blue-text-label.png" alt="American Express" onclick="enhanceImage(this)">
+  </div>
+
+  <div class="input-container">
+    <label for="cardNumber">Credit Card Number</label>
+    <input type="text" id="cardNumber" placeholder="Enter your card number">
+  </div>
+  <div class="input-container">
+    <label>Date of Expiry</label>
+    <input type="text" id="expiryDate" placeholder="MM/YY">
+    <label>CVV</label>
+    <input type="text" id="cvv" class="cvv" placeholder="Enter CVV">
+  </div>
+  <div class="input-container">
+    <label for="cardHolderName">Name of the Card Holder</label>
+    <input type="text" id="cardHolderName" placeholder="Enter card holder's name">
+  </div>
+  <div class="amount-container">
+    <label for="amount">Amount to be Paid</label>
+    <input type="text" id="amount" placeholder="Enter amount">
+  </div>
+  <button class="pay-btn" onclick="validateAndRedirect()">PAY</button>
+</div>
+<div class="user-circle" onclick="toggleDropdown()">
+  <span>A</span>
+  <div class="dropdown-content" id="dropdownContent">
+      <a href="contact.html">Contact us</a>
+      <hr>
+      <a href="login_page.html">Log out</a>
+  </div>
+</div>
+<script>
+  function enhanceImage(img) {
+    var images = document.querySelectorAll('.credit-card-images img');
+    images.forEach(function(image) {
+      image.style.transform = 'scale(1)';
+    });
+    img.style.transform = 'scale(1.1)';
+  }
+
+  function validateAndRedirect() {
+    const cardNumber = document.getElementById('cardNumber').value.trim();
+    const expiryDate = document.getElementById('expiryDate').value.trim();
+    const cvv = document.getElementById('cvv').value.trim();
+    const cardHolderName = document.getElementById('cardHolderName').value.trim();
+    const amount = document.getElementById('amount').value.trim();
+
+    const cardNumberPattern = /^\d{16}$/;
+    const expiryDatePattern = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    const cvvPattern = /^\d{3}$/;
+    const cardHolderNamePattern = /^[a-zA-Z\s]+$/;
+    const amountPattern = /^Rs\d+$/;
+
+    if (!cardNumberPattern.test(cardNumber)) {
+      alert('Please enter a valid credit card number (16 digits).');
+    } else if (!expiryDatePattern.test(expiryDate)) {
+      alert('Please enter a valid expiry date (MM/YY).');
+    } else if (!cvvPattern.test(cvv)) {
+      alert('Please enter a valid CVV (3 digits).');
+    } else if (!cardHolderNamePattern.test(cardHolderName)) {
+      alert('Please enter a valid card holder\'s name (letters and spaces only).');
+    } else if (!amountPattern.test(amount)) {
+      alert('Please enter a valid amount (e.g., Rs1000).');
+    } else {
+      window.location.href="timer.html"; 
+    }
+  }
+
+  const cvvInput = document.getElementById('cvv');
+
+  cvvInput.addEventListener('input', function() {
+    const cvvValue = this.value.trim();
+    const cvvPattern = /^\d{3}$/;
+    if (!cvvPattern.test(cvvValue)) {
+      this.classList.add('error');
+    } else {
+      this.classList.remove('error');
+    }
+  });
+  function toggleDropdown() {
+    var dropdown = document.getElementById("dropdownContent");
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        dropdown.style.display = "block";
+    }
+  }
+
+
+</script>
+
+</body>
+</html>
