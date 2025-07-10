@@ -1,6 +1,7 @@
-# 🎟️ EliteTix
+# 🎟️ EliteTix – Full Stack AI-Powered Ticket Booking System
 
-EliteTix is a full-stack ticket booking platform for **movies** and **events**. Users can browse shows, book tickets, and receive confirmation via email. Admins can manage events and movies via a secure backend interface.
+**EliteTix** is a complete **event and movie ticket booking platform** built with a modern tech stack.  
+It features a **responsive frontend**, a secure **Express.js backend**, MongoDB integration, and an **AI chatbot** that provides intelligent user support across all pages.
 
 ---
 
@@ -20,6 +21,16 @@ EliteTix is a full-stack ticket booking platform for **movies** and **events**. 
 
 ---
 
+## 🧠 AI Chatbot Integration
+
+Integrated with [Chatbase](https://www.chatbase.co/) to provide:
+- 24/7 event and ticket support
+- Navigation help across pages
+- Smart FAQs trained on platform content
+- Works seamlessly on every frontend page
+
+---
+
 ## 🧰 Tech Stack
 
 | Layer | Tech |
@@ -31,3 +42,4 @@ EliteTix is a full-stack ticket booking platform for **movies** and **events**. 
 | **Email Service** | Nodemailer |
 | **Payment** | Mock Integration |
 | **Deployment** | Coming Soon |
+| AI Chatbot   | Chatbase (GPT-powered)   |
